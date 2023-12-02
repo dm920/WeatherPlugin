@@ -460,7 +460,7 @@ class WeatherSettingsViewNew(ConfigListScreen, Screen):
             self.list.append(getConfigListEntry(_("Cache data :"), config.plugins.MSNWeather.cachedata))
             self.list.append(getConfigListEntry(_("Enable Debug :"), config.plugins.MSNWeather.debug))
             self['config'].setList(self.list)
-            self['status'].setText(_("Standard fertig"))
+            self['status'].setText(_("Standard finished"))
 
     def setInputToDefault(self, configItem, SAVE):
         configItem.setValue(configItem.default)
