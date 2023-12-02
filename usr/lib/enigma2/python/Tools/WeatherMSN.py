@@ -34,7 +34,7 @@ from os.path import isfile
 
 ########################### log file loeschen ##################################
 
-myfile = "/tmp/OAWeatherInfo.log"
+myfile = "/tmp/MSNWeatherInfo.log"
 
 ## If file exists, delete it ##
 if isfile(myfile):
