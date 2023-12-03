@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright (C) 2023 jbleyel, Mr.Servo, Stein17
 #
 # MSNWeather is free software: you can redistribute it and/or modify
@@ -14,7 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with MSNWeather.  If not, see <http://www.gnu.org/licenses/>.
-
+#
 # Some parts are taken from MetrixHD skin and MSNWeather Plugin.
 
 from os import remove, listdir
@@ -49,7 +48,6 @@ from Components.Button import Button
 #from Components.List import List
 
 
-
 if sys.version_info[0] >= 3:
 
     from Tools.Directories import SCOPE_CONFIG, SCOPE_PLUGINS, SCOPE_SKINS, resolveFilename
@@ -58,7 +56,7 @@ else:
 
     from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_CONFIG, SCOPE_PLUGINS
 
-# --------------------------- Logfile -------------------------------
+################################## Logfile ##################################
 
 from datetime import datetime
 from shutil import copyfile
@@ -76,7 +74,7 @@ if isfile(myfile):
 
 logstatus = "on"
 
-# ________________________________________________________________________________
+#############################################################################
 
 def write_log(msg):
     if logstatus == ('on'):
@@ -87,7 +85,7 @@ def write_log(msg):
             return
     return
 
-# ****************************  test ON/OFF Logfile ************************************************
+############################# test ON/OFF Logfile ############################
 
 
 def logout(data):
@@ -97,9 +95,8 @@ def logout(data):
     return
 
 
-# ----------------------------- write file command -----------------------------
+############################# write file command #############################
 logout(data="start")
-
 
 
 config.plugins.MSNWeather = ConfigSubsection()
@@ -113,7 +110,6 @@ if sys.version_info[0] >= 3:
 else:
     logout(data="Python 2")
     ICONSETROOT = join(resolveFilename(SCOPE_SKIN), "WeatherIconSets")
-
 
 if exists(ICONSETROOT):
     for iconset in listdir(ICONSETROOT):
@@ -131,14 +127,11 @@ config.plugins.MSNWeather.owm_geocode = ConfigText(default=GEODATA[1])
 config.plugins.MSNWeather.tempUnit = ConfigSelection(default="Celsius", choices=[("Celsius", _("Celsius")), ("Fahrenheit", _("Fahrenheit"))])
 config.plugins.MSNWeather.weatherservice = ConfigSelection(default="MSN", choices=[("MSN", _("MSN weather")), ("OpenMeteo", _("Open-Meteo Wetter")), ("openweather", _("OpenWeatherMap"))])
 
-
 #config.plugins.MSNWeather.weatherservice = ConfigSelection(default="MSN", choices=[("MSN")])
 
 config.plugins.MSNWeather.debug = ConfigYesNo(default=False)
 
 USELOGFILE = config.plugins.MSNWeather.debug
-
-
 
 if USELOGFILE.value:
     logout(data="LOGFILE_On")
@@ -156,17 +149,16 @@ MODULE_NAME = "MSNWeather"
 CACHEFILE = resolveFilename(SCOPE_CONFIG, "MSNWeather.dat")
 PLUGINPATH = join(resolveFilename(SCOPE_PLUGINS), 'Extensions/MSNWeather')
 
-
 class WeatherSettingsViewNew(ConfigListScreen, Screen):
     logout(data="WeatherSettingsViewNew")
     skin = """
-
-        <screen name="WeatherSettingsViewNew" title="Weather Plugin Setup"  position="center,center" size="1920,1080" backgroundColor="#00000000"  transparent="0"  >
-            <eLabel position="0,0" size="1920,1080" backgroundColor="#00000000"    transparent="0" zPosition="0" />
+        <screen name="WeatherSettingsViewNew" title="Weather Plugin Setup" position="center,center" size="1920,1080" backgroundColor="#00000000" transparent="0"  >
+            <eLabel position="0,0" size="1920,1080" backgroundColor="#00000000" transparent="0" zPosition="0" />
             <widget name="config" position="100,20" size="1000,450" font="Regular;30" itemHeight="45"  backgroundColor="#00000000" foregroundColor="#00ffffff" transparent="0" zPosition="3" scrollbarMode="showOnDemand" />
             <widget name="status" font="Regular; 25"  position="100,470" size="1000,40" foregroundColor ="#00fff000" transparent="1"  zPosition="3" halign="center" valign="center" />
-            <eLabel backgroundColor="#00000000" font="Regular; 28" position="00,480" size="1280,40" text="Virtual KeyBoard = Goto City Name and Press OK" transparent="1" halign="center" valign="center" zPosition="2" foregroundColor="#0abab5" />
-            <eLabel backgroundColor="#00000000" font="Regular; 28" position="00,530" size="1280,40" text="Please Restart E2 after saving your City Name" transparent="1" halign="center" valign="center" zPosition="2" foregroundColor="#cc7722" />
+            <eLabel backgroundColor="#00000000" font="Regular; 28" position="00,475" size="1280,40" text="Enter your City Name - Virtual KeyBoard = Press OK" transparent="1" halign="center" valign="center" zPosition="2" foregroundColor="#0abab5" />
+            <eLabel backgroundColor="#00000000" font="Regular; 28" position="00,505" size="1280,40" text="Use Red Button after entering your City Name" transparent="1" halign="center" valign="center" zPosition="2" foregroundColor="#00ffffff" />
+            <eLabel backgroundColor="#00000000" font="Regular; 28" position="00,535" size="1280,40" text="Please Restart E2 after saving your City Name" transparent="1" halign="center" valign="center" zPosition="2" foregroundColor="#cc7722" />
             <ePixmap position="30,590" zPosition="3" size="240,50" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MSNWeather/Images/red.png" transparent="1" alphatest="blend" />
             <ePixmap position="330,590" zPosition="3" size="240,50" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MSNWeather/Images/green.png"  transparent="1" alphatest="blend" />
             <ePixmap position="630,590" zPosition="3" size="240,50" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MSNWeather/Images/yellow.png"  transparent="1" alphatest="blend" />
@@ -185,8 +177,8 @@ class WeatherSettingsViewNew(ConfigListScreen, Screen):
         self.status=""
         self["status"] = Label()
 
-        Neue_keymap = '/usr/lib/enigma2/python/Plugins/Extensions/MSNWeather/keymap.xml'
-        readKeymap(Neue_keymap)
+        New_keymap = '/usr/lib/enigma2/python/Plugins/Extensions/MSNWeather/keymap.xml'
+        readKeymap(New_keymap)
 
         self.list = []
         self.list.append(getConfigListEntry(_("Enabled :"), config.plugins.MSNWeather.enabled))
@@ -261,8 +253,6 @@ class WeatherSettingsViewNew(ConfigListScreen, Screen):
                 self['config'].getCurrent()[1].value = callback
         except:
             pass
-
-
 
     def keycheckCity(self, closesave=False):
         logout(data="def -----------  keycheckCity")
@@ -348,7 +338,7 @@ class WeatherSettingsViewNew(ConfigListScreen, Screen):
 
 
                     logout(data="searchCity services for choicebox zu my screen ")
-# ---------------------     hier ist der alte aufruf der choicebox
+############################## old Choice Box call #############################
                     #self.session.openWithCallback(self.choiceIdxCallback, ChoiceBox, titlebartext=_("Select Your Location"), title="", list=tuple(self.citylist))
                     self.citylisttest = self.citylist
                     logout(data=str(self.citylisttest))
@@ -358,7 +348,6 @@ class WeatherSettingsViewNew(ConfigListScreen, Screen):
 
                     #selected_city_str = self.selected_city
                     #logout(data=str(selected_city_str))
-
 
                     #self.choiceIdxCallback(self.test_screen.selectCity())
 
@@ -388,7 +377,7 @@ class WeatherSettingsViewNew(ConfigListScreen, Screen):
                 elif 'lat=' in part:
                     latitude = part.split('=')[1].strip((']'))
 
-            # Nun können Sie die Werte weiterverarbeiten oder speichern
+            # You can process or save the values
             logout("Stadt: " + city)
             logout("Längengrad: " + longitude)
             logout("Breitengrad: " + latitude)
@@ -397,8 +386,8 @@ class WeatherSettingsViewNew(ConfigListScreen, Screen):
                 self.saveGeoCode(city, longitude, latitude)
 
         else:
-            logout("Die ausgewählte Stadt hat nicht genügend Informationen.")
-# ------------------  'Frankfurt am Main', '50.11552', '8.68417) ist city - latitude - longitude selfgeodata 1 - dann 2
+            logout("The selected City does not have enough information.")
+################################################################################
     def saveGeoCode(self, city, longitude, latitude):
         logout(data="saveGeoCode value ")
         logout(data=str(city))
@@ -467,20 +456,17 @@ class WeatherSettingsViewNew(ConfigListScreen, Screen):
         if SAVE:
             configItem.save()
 
-
 class TestScreen(Screen):
     skin = """
-
-    <screen name="TestScreen"   position="center,center" size="1920,1080" backgroundColor="#00000000"  transparent="0"  >
-            <eLabel position="0,0" size="1920,1080" backgroundColor="#00000000"    transparent="0" zPosition="0" />
+    <screen name="TestScreen" position="center,center" size="1920,1080" backgroundColor="#00000000" transparent="0"  >
+            <eLabel position="0,0" size="1920,1080" backgroundColor="#00000000" transparent="0" zPosition="0" />
             <ePixmap position="10,590" zPosition="3" size="240,50" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MSNWeather/Images/red.png" transparent="1" alphatest="blend" />
-            <widget name="meinelist" position="100,20" size="1000,430" font="Regular;30" itemHeight="45"  backgroundColor="#00000000" foregroundColor="#00ffffff" transparent="0" zPosition="3" scrollbarMode="showOnDemand" />
-            <widget name="status" font="Regular; 25"  position="100,470" size="1000,40" foregroundColor ="#0000ff00" backgroundColor="#00000000" transparent="0"  zPosition="3" halign="center" valign="center" />
+            <widget name="meinelist" position="100,20" size="1000,430" font="Regular;30" itemHeight="45" backgroundColor="#00000000" foregroundColor="#00ffffff" transparent="0" zPosition="3" scrollbarMode="showOnDemand" />
+            <widget name="status" font="Regular; 25" position="100,470" size="1000,40" foregroundColor ="#0000ff00" backgroundColor="#00000000" transparent="0" zPosition="3" halign="center" valign="center" />
             <widget source="key_red" render="Label" position="10,570" zPosition="5" size="240,50" font="Regular;30" halign="center" valign="center" backgroundColor="#00313040" foregroundColor="#00ffffff" transparent="1" />
     </screen>
     """
-#            <widget name="meinelist" position="100,20" size="1000,450" font="Regular;30" itemHeight="45"  backgroundColor="#00000000" foregroundColor="#00ffffff" transparent="0" zPosition="3" scrollbarMode="showOnDemand" />
-
+#            <widget name="mylist" position="100,20" size="1000,450" font="Regular;30" itemHeight="45"  backgroundColor="#00000000" foregroundColor="#00ffffff" transparent="0" zPosition="3" scrollbarMode="showOnDemand" />
 
     def __init__(self, session, citylisttest, okCallback=None):
         logout(data="Testscreen init")
@@ -495,11 +481,11 @@ class TestScreen(Screen):
         zeile1 = self.citylisttest
         logout(data=str(zeile1))
 
-        # Dummy-Daten erstellen
+        # Create dummy data
         dummy_data = ["Item 1", "Item 2", "Item 3"]
         zeile2 = dummy_data
         logout(data=str(zeile2))
-        #MenuList-Widget erstellen und Daten hinzufügen
+        # Create MenuList widget and add data
         self['meinelist'] = MenuList(citylisttest)
 
         self.status = ""
@@ -524,14 +510,11 @@ class TestScreen(Screen):
 
         if selected_city_tuple:
             selected_city = selected_city_tuple[0]
-            self.selected_city = selected_city  # Speichern Sie die ausgewählte Stadt
-            logout(data="498 Selected City: {}".format(selected_city))  # Schreiben Sie die ausgewählte Stadt in den Logfile
+            self.selected_city = selected_city  # Save selected city
+            logout(data="498 Selected City: {}".format(selected_city))  # Write selected city to the log file
             if self.okCallback is not None:
                 self.okCallback(selected_city)
-            self.close()  # Schließen Sie den Bildschirm nach der Auswahl
-
-
-
+            self.close()  # After selecting, close screen
 
 class WeatherHandler():
     logout(data="WeatherHandler")
@@ -567,7 +550,6 @@ class WeatherHandler():
         self.getCacheData()
         logout(data="WeatherHandler session start 3")
 
-
     def writeData(self, data):
         logout(data="WeatherHandler write data")
         #self.debug("writeData")
@@ -590,7 +572,6 @@ class WeatherHandler():
         logout(data="WeatherHandler getdata")
         return self.wetterdata
 
-
     if sys.version_info[0] >= 3:
         logout(data="Python 3 getValid")
         def getValid(self):
@@ -608,9 +589,6 @@ class WeatherHandler():
         logout(data="Python 2 get skydirs")
         def getSkydirs(self):
             return self.skydirs
-
-
-
 
     def getCacheData(self):
         logout(data="WeatherHandler getcachedata")
@@ -744,8 +722,6 @@ class WeatherHandler():
 
     logout(data="WeatherHandler ende")
 
-
-
 def main(session, **kwargs):
     logout(data="main")
     session.open(MSNWeatherPlugin)
@@ -754,7 +730,6 @@ def main(session, **kwargs):
 def setup(session, **kwargs):
     logout(data="setup")
     session.open(WeatherSettingsViewNew)
-
 
 def sessionstart(session, **kwargs):
     logout(data="sessionstart")
@@ -772,7 +747,6 @@ def sessionstart(session, **kwargs):
     session.screen["MSNWeather"].iconpath = iconpath
     weatherhandler.sessionStart(session)
 
-
 def Plugins(**kwargs):
     logout(data="MSNWeatherPlugin")
     logout(data="plugins")
@@ -780,7 +754,6 @@ def Plugins(**kwargs):
     pluginList.append(PluginDescriptor(name="MSNWeather", where=[PluginDescriptor.WHERE_SESSIONSTART], fnc=sessionstart, needsRestart=False))
     pluginList.append(PluginDescriptor(name="Weather Plugin", description=_("Show Weather Forecast"), icon="plugin.png", where=[PluginDescriptor.WHERE_PLUGINMENU], fnc=main))
     return pluginList
-
 
 class MSNWeatherPlugin(Screen):
     logout(data="MSNWeatherPluginScreen")
@@ -811,8 +784,8 @@ class MSNWeatherPlugin(Screen):
         Screen.__init__(self, session)
         self.title = _("Weather Plugin")
 
-        Neue_keymap = '/usr/lib/enigma2/python/Plugins/Extensions/MSNWeather/keymap.xml'
-        readKeymap(Neue_keymap)
+        New_keymap = '/usr/lib/enigma2/python/Plugins/Extensions/MSNWeather/keymap.xml'
+        readKeymap(New_keymap)
 
         self["key_blue"] = StaticText(_("Menu"))
 
@@ -837,7 +810,6 @@ class MSNWeatherPlugin(Screen):
         self.onLayoutFinish.append(self.startRun)
         logout(data="finish")
 
-
     def startRun(self):
         logout(data="startrun")
         self.data = weatherhandler.getData() or {}
@@ -847,9 +819,6 @@ class MSNWeatherPlugin(Screen):
             logout(data="startrun-callback")
             self.getWeatherDataCallback()
             logout(data="startrun-callback 1")
-
-
-
 
     def clearFields(self):
         logout(data="clearfields")
@@ -864,9 +833,6 @@ class MSNWeatherPlugin(Screen):
         logout(data="Python 2 getval")
         def getVal(self, key):
             return self.data.get(key, self.na) if self.data else self.na
-
-
-
 
     if sys.version_info[0] >= 3:
         logout(data="Python 3 getCurrentVal")
@@ -886,10 +852,6 @@ class MSNWeatherPlugin(Screen):
                 if key in current:
                     value = current.get(key, default)
             return value
-
-
-
-
 
     def getWeatherDataCallback(self):
         logout(data="getWeatherDataCallback")
@@ -927,6 +889,5 @@ class MSNWeatherPlugin(Screen):
     def error(self, errortext):
         self.clearFields()
         self["statustext"].text = errortext
-
 
 weatherhandler = WeatherHandler()
