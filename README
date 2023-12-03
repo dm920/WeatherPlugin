@@ -1,0 +1,186 @@
+Description: MSNWeather Converter and Renderer to display Weather in Skin...
+
+
+Usage example 1:
+
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">humidity</convert>
+	</widget>
+	<widget noWrap="1" render="Label" position="1740,245" source="session.MSNWeather">
+		<convert type="MSNWeather">winddisplay</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">feelslike</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">weekday,current</convert>
+	</widget>
+	<widget noWrap="1"  render="Label" position="1775,150"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_current</convert>
+	</widget>
+	<widget noWrap="1"  render="Label" position="1600,148" size="240,24" font="Regular; 18" source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_text,current</convert>
+	</widget>
+	<widget alphatest="blend" render="MSNWeatherPixmap" position="1581,363" size="78,78" source="session.MSNWeather">
+		<convert type="MSNWeather">weathericon,day1,/usr/share/enigma2/Skin?????/Wettericons/,png</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_text,day1</convert>
+	</widget>
+	<widget noWrap="1"   source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_high,day1</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_low,day1</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">weekday,day2</convert>
+	</widget>
+	<widget noWrap="1" alphatest="blend" render="MSNWeatherPixmap"  source="session.MSNWeather">
+		<convert type="MSNWeather">weathericon,day2,/usr/share/enigma2/Skin?????/Wettericons/,png</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_high,day2</convert>
+	</widget>
+	<widget noWrap="1" render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_low,day2</convert>
+	</widget>
+	<widget noWrap="1"render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_text,day2</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">weekday,day3</convert>
+	</widget>
+	<widget noWrap="1" alphatest="blend" render="MSNWeatherPixmap"  source="session.MSNWeather">
+		<convert type="MSNWeather">weathericon,day3,/usr/share/enigma2/Skin?????/Wettericons/,png</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_high,day3</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_low,day3</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_text,day3</convert>
+	</widget>
+	<widget noWrap="1" render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">weekday,day4</convert>
+	</widget>
+	<widget noWrap="1" alphatest="blend" render="MSNWeatherPixmap"  source="session.MSNWeather">
+		<convert type="MSNWeather">weathericon,day4,/usr/share/enigma2/Skin?????/Wettericons/,png</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_high,day4</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_low,day4</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_text,day4</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">weekday,day5</convert>
+	</widget>
+	<widget noWrap="1" alphatest="blend" render="MSNWeatherPixmap"  source="session.MSNWeather">
+		<convert type="MSNWeather">weathericon,day5,/usr/share/enigma2/Skin?????/Wettericons/,png</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_high,day5</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_low,day5</convert>
+	</widget>
+	<widget noWrap="1"  render="Label"  source="session.MSNWeather">
+		<convert type="MSNWeather">temperature_text,day5</convert>
+	</widget>
+or
+	<widget render="Label"  source="session.MSNWeather"  noWrap="1">
+		<convert type="MSNWeather">temperature_high_low,day5</convert>
+	</widget>
+
+Description:
+
+Displaying icons with MSNWeatherPixmap Renderer:
+
+"weathericon,current" --> current weather icon (current means right now and the rest of the day )
+"weathericon,dayX":
+--> X = 0 (current, means right now and the rest of the day)
+--> X = 1 (today, means the complete 24h-day)
+--> X = 2 (tomorrow, means the complete 24h-day)
+--> X = 3-5 (day 2-4, means the complete 24h-day)
+
+Displaying Info-data with Label Renderer:
+weathersource          # "MSN Weather" or "Open-Meteo Weather" or "OpenWeatherMap"
+city                   # Example: "Hamburg" (shortstring without country)
+longitude              # Example: "53.5573"
+latitude               # Example: "9.996"
+observationpoint       # Example: "Hamburg, Germany" (fullstring with country)
+observationtime        # Example: "16:17"
+sunrise                # Example: "08:30"
+sunset                 # Example: "16:27"
+isnight                # Example: "False" oder "True"
+tempunit               # "°C" or "°F"
+windunit               # "km/h" or "mph"
+precunit               # "%"
+temperature_current    # Example: "8 °C"
+feelslike              # Example: "4 °C"
+feelslikefull          # Example: "Feels like 4 °C"
+humidity               # Example: "81 %"
+humidityfull           # Example: "Humidity 81 %"
+raintext               # Example: "No rain for the next 2 hours." (HINT: MSN only, for other services an empty string is supplied)
+winddisplay            # Example: "12 km/h Southwest"
+windspeed              # Example: "12 km/h"
+winddir                # Example: "230 °"
+winddirsign            # Example: "↗ SW"
+winddirarrow           # Example: "↗"
+winddirname            # Example: "Southwest"
+winddirshort           # Example: "SW"
+--> these arguments do not need any further arguments
+
+These arguments are depending of the day argument:
+temperature_high       # Example: "5 °C"
+temperature_low        # Example: "-3 °C"
+temperature_high_low   # Example: "5 / -3 °C"
+temperature_text       # Example: "rain showers" (HINT: Open-Meteo doesn't deliver a description text, therefore an empty string is supplied)
+weathericon            # Example: "9" (matching the extended weather icon code: YAHOO+)
+yahoocode              # Example: "9" (matching the extended weather icon code: YAHOO+)
+meteocode              # Example: "Q" (matching the character set: 'MetrixIcons.ttf' that contains the Meteofont)
+dayText                # Example: "today, Fri 24"
+weekday                # Example: "Friday"
+weekshortday           # Example: "Fri"
+date                   # Example: "2023-01-13"
+precipitation          # Example: "29 %"
+precipitationfull      # Example: "Precipitation 29 %"
+daySummary0            # Example: "The skies will be cloudy." (HINT: MSN only, for other services an empty string is supplied)
+daySummary1            # Example: "Blustery winds will accompany a high of 6°." (HINT: MSN only, for other services an empty string is supplied)
+nightSummary0          # Example: "The skies will be mostly clear." (HINT: MSN only, for other services an empty string is supplied)
+nightSummary1          # Example: "The low will be -3 °C." (HINT: MSN only, for other services an empty string is supplied)
+umbrellaIndex          # Example: "No need." (HINT:MSN only and only available for day0+1, otherwise an empty string is supplied)
+--> to use in combination with current (X = 0) or dayX (X = 1 to 5) (look out for the examples)
+--> X = 0 (current, means right now and the rest of the day)
+--> X = 1 (today, means the complete 24h-day)
+--> X = 2 (tomorrow, means the complete 24h-day)
+--> X = 3-5 (day 2-4, means the complete 24h-day)
+
+usage example 2:
+	<widget alphatest="blend" render="MSNWeatherPixmap" position="20,553" size="200,122" source="session.MSNWeather" transparent="1">
+		<convert type="MSNWeather">weathericon,current,/etc/enigma2/weather_icons_special/</convert>
+	</widget>
+
+--> weathericon, current --> current weather icon
+--> /etc/enigma2/weather_icons_special/ --> folder for weather icons
+--> png --> file extensions (optional)
+
+usage example 3:
+
+Meteofont
+
+	<widget font="Meteo" render="Label" position="20,553" size="200,122" source="session.MSNWeather" transparent="1">
+		<convert type="MSNWeather">meteocode</convert>
+	</widget>
+
+Displaying weather service logo icon with MSNWeatherPixmap Renderer:
+
+	<widget alphatest="blend" render="MSNWeatherPixmap" position="20,553" size="200,30" source="session.MSNWeather" transparent="1">
+		<convert type="MSNWeather">logo</convert>
+	</widget>
