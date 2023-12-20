@@ -184,3 +184,10 @@ Displaying weather service logo icon with MSNWeatherPixmap Renderer:
 	<widget alphatest="blend" render="MSNWeatherPixmap" position="20,553" size="200,30" source="session.MSNWeather" transparent="1">
 		<convert type="MSNWeather">logo</convert>
 	</widget>
+
+usage example 4:
+conditional display of pixmap (here: depending on flag 'isnight')
+<widget position="0,0" size="480,320" render="Pixmap" pixmap="/usr/share/enigma2/display/NightWeather_Standby_stein17/standby_night.png" source="session.MSNWeather"  zPosition="0" halign="center" valign="center">
+	<convert type="MSNWeather">isnight</convert>
+	<convert type="ConditionalShowHide" />
+</widget>
